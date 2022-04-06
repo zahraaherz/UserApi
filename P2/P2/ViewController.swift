@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
   var users: [Users] = []
     var Ausers = [User]()
-    
+    // UserDefaults.standard.removeObject(forKey: "In")
     
     @IBOutlet var tableView: UITableView!
     
@@ -29,10 +29,15 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
-        
-       
 
+    }
+    
+    
+    @IBAction func LogOutBtn(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: "In")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController!.setViewControllers([vc], animated:true)
     }
     
     func fetchUsers(completion: @escaping ([User])-> () )
